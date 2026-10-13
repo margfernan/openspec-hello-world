@@ -1,0 +1,47 @@
+1openapi: 3.0.3
+info:
+  title: Hello World API
+  description: Simple Hello World REST API
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/martin-628/hello-world/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /hello:
+    get:
+      summary: Return a greeting
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successful greeting
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HelloResponse"
+        "400":
+          description: Name is missing or blank
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    HelloResponse:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+    ErrorResponse:
+      required:
+      - error
+      type: object
+      properties:
+        error:
+          type: string
